@@ -20,14 +20,16 @@
     <meta property="og:title" content="Blue Orchid Beauty & Wellness Academy">
     <meta property="og:description" content="Enroll in our certified beauty courses and book premium services—Microblading, Hydra Facial, Lash Lifting, and more. Discover world-class training since 2022.">
     <meta property="og:type" content="website">
-
-    <link rel="icon" type="image/png" href="icon.png">
-    <link rel="shortcut icon" type="image/png" href="icon.png">
-    <link rel="apple-touch-icon" href="icon.png">
+    
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="icon.png">
+    <link rel="shortcut icon" type="image/png" href="icon.png">
+    <link rel="apple-touch-icon" href="icon.png">
     
     <style>
         /* CSS Variables for Consistent Theme */
@@ -144,6 +146,17 @@
             display: flex;
             align-items: center;
             gap: 0.75rem;
+        }
+
+        .logo-img {
+            height: 60px;
+            width: auto;
+            object-fit: contain;
+            transition: var(--transition-fast);
+        }
+
+        .logo-img:hover {
+            transform: scale(1.05);
         }
 
         .logo-text {
@@ -727,6 +740,142 @@
             font-size: 1.1rem;
         }
 
+        /* YouTube Section */
+        .youtube-section {
+            background: white;
+            padding: 5rem 0;
+        }
+
+        .youtube-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .youtube-channel-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: #ff0000;
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: all var(--transition-normal);
+            box-shadow: var(--shadow-md);
+        }
+
+        .youtube-channel-link:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-xl);
+            background: #cc0000;
+        }
+
+        .youtube-icon {
+            width: 24px;
+            height: 24px;
+        }
+
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .video-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: all var(--transition-normal);
+        }
+
+        .video-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .video-embed iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .video-info {
+            padding: 1.5rem;
+        }
+
+        .video-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .video-description {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .subscribe-banner {
+            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-purple));
+            color: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .subscribe-banner h3 {
+            color: white;
+            font-size: 1.8rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .subscribe-banner p {
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 1.5rem;
+        }
+
+        .subscribe-btn {
+            background: white;
+            color: var(--primary-pink);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all var(--transition-normal);
+            box-shadow: var(--shadow-md);
+        }
+
+        .subscribe-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: var(--shadow-xl);
+        }
+
         /* Contact Section */
         .contact {
             background: linear-gradient(135deg, rgba(236, 72, 153, 0.05), rgba(139, 92, 246, 0.05));
@@ -898,6 +1047,10 @@
 
         /* Responsive Design */
         @media (max-width: 768px) {
+            .logo-img {
+                height: 45px;
+            }
+
             .nav-menu {
                 display: none;
                 position: absolute;
@@ -988,13 +1141,14 @@
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <a href="#home" class="logo">
-                <span class="logo-text">Blue Orchid</span>
+                <img src="logo.png" alt="Blue Orchid Beauty & Wellness Academy" class="logo-img">
             </a>
             
             <ul class="nav-menu" id="navMenu">
                 <li><a href="#home" class="nav-link">Home</a></li>
                 <li><a href="#courses" class="nav-link">Courses</a></li>
                 <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#videos" class="nav-link">Videos</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
                 <li><button class="cta-button" onclick="scrollToContact()">Enroll Now</button></li>
             </ul>
@@ -1414,6 +1568,84 @@
         </div>
     </section>
 
+    <!-- YouTube Section -->
+    <section class="youtube-section" id="videos">
+        <div class="container">
+            <div class="section-header youtube-header">
+                <h2>Watch Our <span class="highlight">Latest Videos</span></h2>
+                <p>Learn tips, tricks, and techniques from our expert instructors on YouTube</p>
+                <a href="https://www.youtube.com/@BlueOrchidBeauty" target="_blank" class="youtube-channel-link">
+                    <svg class="youtube-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                    </svg>
+                    Visit Our YouTube Channel
+                </a>
+            </div>
+
+            <div class="videos-grid">
+                <!-- Video 1 - Replace VIDEO_ID with your actual video IDs -->
+                <div class="video-card">
+                    <div class="video-embed">
+                        <iframe 
+                            src="https://www.youtube.com/embed/VIDEO_ID_1" 
+                            title="Blue Orchid Beauty Tutorial 1"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <h3 class="video-title">Beauty Tutorial - Latest Techniques</h3>
+                        <p class="video-description">Watch and learn professional beauty techniques from our expert instructors.</p>
+                    </div>
+                </div>
+
+                <!-- Video 2 -->
+                <div class="video-card">
+                    <div class="video-embed">
+                        <iframe 
+                            src="https://www.youtube.com/embed/VIDEO_ID_2" 
+                            title="Blue Orchid Beauty Tutorial 2"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <h3 class="video-title">Student Success Stories</h3>
+                        <p class="video-description">Hear from our successful students and their transformation journey.</p>
+                    </div>
+                </div>
+
+                <!-- Video 3 -->
+                <div class="video-card">
+                    <div class="video-embed">
+                        <iframe 
+                            src="https://www.youtube.com/embed/VIDEO_ID_3" 
+                            title="Blue Orchid Beauty Tutorial 3"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <h3 class="video-title">Behind the Scenes at Blue Orchid Academy</h3>
+                        <p class="video-description">Take a tour of our academy and see what makes us special.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Subscribe Banner -->
+            <div class="subscribe-banner">
+                <h3>Subscribe to Our Channel!</h3>
+                <p>Get weekly beauty tips, tutorials, and updates from Blue Orchid Academy</p>
+                <a href="https://www.youtube.com/@BlueOrchidBeauty?sub_confirmation=1" target="_blank" class="subscribe-btn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                    </svg>
+                    Subscribe Now
+                </a>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact Section -->
     <section class="contact" id="contact">
         <div class="container">
@@ -1438,8 +1670,8 @@
 
                     <div class="form-grid">
                         <div class="form-group">
-                            <label for="instagram">Instagram (Optional)</label>
-                            <input type="text" id="instagram" name="instagram" placeholder="@yourusername">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
                         </div>
 
                         <div class="form-group">
@@ -1603,15 +1835,15 @@
                 // Get form data
                 const name = document.getElementById('name').value;
                 const phone = document.getElementById('phone').value;
-                const instagram = document.getElementById('instagram').value;
+                const email = document.getElementById('email').value;
                 const course = document.getElementById('course').value;
                 const message = document.getElementById('message').value;
 
-                console.log('Form data:', { name, phone, instagram, course, message }); // Debug log
+                console.log('Form data:', { name, phone, email, course, message }); // Debug log
 
                 // Validate required fields
-                if (!name || !phone || !course) {
-                    alert('Please fill in your name, phone number, and select a course');
+                if (!name || !phone || !email || !course) {
+                    alert('Please fill in all required fields (Name, Phone, Email, and Course)');
                     return;
                 }
 
@@ -1645,8 +1877,8 @@
                                 inline: true
                             },
                             {
-                                name: "📸 Instagram",
-                                value: instagram || "Not provided",
+                                name: "📧 Email",
+                                value: email,
                                 inline: true
                             },
                             {
@@ -1684,7 +1916,7 @@
                     
                     if (response.ok || response.status === 204) {
                         // Success
-                        alert('✅ Booking request submitted successfully!\n\nThank you for your interest, ' + name + '!\n\nYour booking request has been received and will be reviewed by our team. We will contact you shortly at ' + phone + ' to confirm your enrollment.\n\nFor urgent inquiries, you can also reach us at:\n📧 blue.orchid.baw.academy@gmail.com\n📱 +91 96721 28525');
+                        alert('✅ Booking request submitted successfully!\n\nThank you for your interest, ' + name + '!\n\nYour booking request has been received and will be reviewed by our team. We will contact you shortly at:\n📱 ' + phone + '\n📧 ' + email + '\n\nFor urgent inquiries, you can also reach us at:\n📧 blue.orchid.baw.academy@gmail.com\n📱 +91 96721 28525');
                         
                         // Reset form
                         event.target.reset();
