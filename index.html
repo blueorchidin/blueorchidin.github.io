@@ -1,15 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZWV7QXFZ0"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-ZZWV7QXFZ0');
-</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blue Orchid Beauty & Wellness Academy | Professional Beauty Courses Ludhiana</title>
@@ -1417,7 +1408,7 @@
             <div class="contact-content">
                 <div class="section-header">
                     <h2>Ready to <span class="highlight">Book Your Course?</span></h2>
-                    <p>Fill out the form below and we'll send your inquiry directly to our Instagram DMs for quick response!</p>
+                    <p>Submit your booking request and our team will review it shortly. We'll contact you within 24 hours to confirm your enrollment!</p>
                 </div>
 
                 <form class="contact-form" onsubmit="handleFormSubmit(event)">
@@ -1428,23 +1419,30 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="instagram">Instagram Link</label>
-                            <input type="text" id="instagram" name="instagram" placeholder="@yourusername">
+                            <label for="phone">Phone Number *</label>
+                            <input type="tel" id="phone" name="phone" placeholder="+91 XXXXX XXXXX" required>
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="course">Interested Course *</label>
-                        <select id="course" name="course" required>
-                            <option value="">Select a course</option>
-                            <option value="Professional Nail Art">Professional Nail Art</option>
-                            <option value="Advanced Hair Styling">Advanced Hair Styling</option>
-                            <option value="Professional Makeup Artistry">Professional Makeup Artistry</option>
-                            <option value="Skincare Specialist">Skincare Specialist</option>
-                            <option value="Permanent Makeup">Permanent Makeup</option>
-                            <option value="Microblading">Microblading</option>
-                            <option value="Lash Lifting">Lash Lifting</option>
-                        </select>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="instagram">Instagram (Optional)</label>
+                            <input type="text" id="instagram" name="instagram" placeholder="@yourusername">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="course">Interested Course *</label>
+                            <select id="course" name="course" required>
+                                <option value="">Select a course</option>
+                                <option value="Professional Nail Art">Professional Nail Art</option>
+                                <option value="Advanced Hair Styling">Advanced Hair Styling</option>
+                                <option value="Professional Makeup Artistry">Professional Makeup Artistry</option>
+                                <option value="Skincare Specialist">Skincare Specialist</option>
+                                <option value="Permanent Makeup">Permanent Makeup</option>
+                                <option value="Microblading">Microblading</option>
+                                <option value="Lash Lifting">Lash Lifting</option>
+                            </select>
+                        </div>
                     </div>
 
                     <div class="form-group">
@@ -1452,7 +1450,7 @@
                         <textarea id="message" name="message" placeholder="Any questions or special requirements?"></textarea>
                     </div>
 
-                    <button type="submit" class="submit-btn">Book Now - Message Us on Instagram</button>
+                    <button type="submit" class="submit-btn">Submit Booking Request</button>
                 </form>
             </div>
         </div>
@@ -1586,81 +1584,118 @@
 
         // Form Submission Handler - Redirect to Instagram DMs
         function handleFormSubmit(event) {
+            console.log('Form submitted!'); // Debug log
             event.preventDefault();
             
-            // Get form data
-            const name = document.getElementById('name').value;
-            const instagram = document.getElementById('instagram').value;
-            const course = document.getElementById('course').value;
-            const message = document.getElementById('message').value;
+            try {
+                // Get form data
+                const name = document.getElementById('name').value;
+                const phone = document.getElementById('phone').value;
+                const instagram = document.getElementById('instagram').value;
+                const course = document.getElementById('course').value;
+                const message = document.getElementById('message').value;
 
-            // Validate required fields
-            if (!name || !course) {
-                alert('Please fill in your name and select a course');
-                return;
-            }
+                console.log('Form data:', { name, phone, instagram, course, message }); // Debug log
 
-            // Create the Instagram message
-            let instagramMessage = `Hi! I'm ${name}`;
-            
-            if (instagram) {
-                instagramMessage += ` (Instagram: ${instagram})`;
-            }
-            
-            instagramMessage += `. I am looking forward to enrolling in the ${course} course at Blue Orchid Academy.`;
-            
-            if (message) {
-                instagramMessage += ` Additional message: ${message}`;
-            }
+                // Validate required fields
+                if (!name || !phone || !course) {
+                    alert('Please fill in your name, phone number, and select a course');
+                    return;
+                }
 
-            // Encode the message for URL
-            const encodedMessage = encodeURIComponent(instagramMessage);
-            
-            // Instagram DM link - opens Instagram app or web with pre-filled message
-            // Note: Instagram doesn't support pre-filled DM text in URLs, so we'll copy to clipboard
-            const instagramUsername = 'blueorchidacademyy'; // Your Instagram handle
-            const instagramUrl = `https://ig.me/m/${instagramUsername}`;
-            
-            // Copy message to clipboard
-            if (navigator.clipboard) {
-                navigator.clipboard.writeText(instagramMessage).then(() => {
-                    // Show success message
-                    alert(`📋 Message copied to clipboard!\n\n"${instagramMessage}"\n\nClick OK to open Instagram DMs. Paste the message there!`);
-                    
-                    // Open Instagram DMs
-                    window.open(instagramUrl, '_blank');
-                    
-                    // Reset form
-                    event.target.reset();
-                }).catch(() => {
-                    // Fallback if clipboard doesn't work
-                    showMessageModal(instagramMessage, instagramUrl);
+                // Disable submit button to prevent double submission
+                const submitBtn = event.target.querySelector('button[type="submit"]');
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Submitting...';
+
+                // Create Discord embed message
+                const webhookUrl = 'https://discord.com/api/webhooks/1457062067243712624/_DxMr2SMss_imNZ95fLVN69f8JjJl3v-NEVPgS8ejtH5nL0PS7iDlDFhYEO0ivlXEWxs';
+                
+                const currentDate = new Date().toLocaleString('en-IN', { 
+                    timeZone: 'Asia/Kolkata',
+                    dateStyle: 'full',
+                    timeStyle: 'short'
                 });
-            } else {
-                // Fallback for browsers that don't support clipboard API
-                showMessageModal(instagramMessage, instagramUrl);
+
+                const discordPayload = {
+                    embeds: [{
+                        title: "🎓 New Course Booking Request",
+                        color: 15418782, // Pink color (#ec4899)
+                        fields: [
+                            {
+                                name: "👤 Name",
+                                value: name,
+                                inline: true
+                            },
+                            {
+                                name: "📱 Phone",
+                                value: phone,
+                                inline: true
+                            },
+                            {
+                                name: "📸 Instagram",
+                                value: instagram || "Not provided",
+                                inline: true
+                            },
+                            {
+                                name: "💅 Course",
+                                value: course,
+                                inline: false
+                            }
+                        ],
+                        footer: {
+                            text: "Blue Orchid Beauty & Wellness Academy"
+                        },
+                        timestamp: new Date().toISOString()
+                    }]
+                };
+
+                // Add message field if provided
+                if (message) {
+                    discordPayload.embeds[0].fields.push({
+                        name: "💬 Additional Message",
+                        value: message,
+                        inline: false
+                    });
+                }
+
+                // Send to Discord webhook
+                fetch(webhookUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(discordPayload)
+                })
+                .then(response => {
+                    console.log('Webhook response:', response); // Debug log
+                    
+                    if (response.ok || response.status === 204) {
+                        // Success
+                        alert('✅ Booking request submitted successfully!\n\nThank you for your interest, ' + name + '!\n\nYour booking request has been received and will be reviewed by our team. We will contact you shortly at ' + phone + ' to confirm your enrollment.\n\nFor urgent inquiries, you can also reach us at:\n📧 blue.orchid.baw.academy@gmail.com\n📱 +91 96721 28525');
+                        
+                        // Reset form
+                        event.target.reset();
+                    } else {
+                        throw new Error('Webhook failed');
+                    }
+                })
+                .catch(error => {
+                    console.error('Webhook error:', error); // Debug log
+                    alert('❌ There was an error submitting your booking. Please contact us directly:\n\n📧 blue.orchid.baw.academy@gmail.com\n📱 +91 96721 28525\n📱 +91 75270 85150');
+                })
+                .finally(() => {
+                    // Re-enable submit button
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Submit Booking Request';
+                });
+                
+            } catch (error) {
+                console.error('Form submit error:', error); // Debug log
+                alert('An error occurred. Please contact us directly at:\n📧 blue.orchid.baw.academy@gmail.com\n📱 +91 96721 28525');
             }
         }
 
-        // Fallback modal to show message if clipboard fails
-        function showMessageModal(message, instagramUrl) {
-            const modal = document.createElement('div');
-            modal.style.cssText = 'position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); z-index: 10000; display: flex; align-items: center; justify-content: center; padding: 20px;';
-            
-            modal.innerHTML = `
-                <div style="background: white; padding: 30px; border-radius: 20px; max-width: 500px; width: 100%;">
-                    <h3 style="margin-bottom: 15px; color: #ec4899; font-family: 'Playfair Display', serif;">📱 Copy This Message</h3>
-                    <textarea readonly style="width: 100%; height: 150px; padding: 15px; border: 2px solid #ec4899; border-radius: 10px; font-family: inherit; margin-bottom: 15px;">${message}</textarea>
-                    <div style="display: flex; gap: 10px;">
-                        <button onclick="navigator.clipboard.writeText('${message.replace(/'/g, "\\'")}'); alert('Copied!');" style="flex: 1; padding: 12px; background: #ec4899; color: white; border: none; border-radius: 10px; cursor: pointer; font-weight: 600;">Copy Message</button>
-                        <button onclick="window.open('${instagramUrl}', '_blank'); this.parentElement.parentElement.parentElement.remove();" style="flex: 1; padding: 12px; background: linear-gradient(135deg, #ec4899, #8b5cf6); color: white; border: none; border-radius: 10px; cursor: pointer; font-weight: 600;">Open Instagram</button>
-                    </div>
-                    <button onclick="this.parentElement.parentElement.remove();" style="margin-top: 10px; width: 100%; padding: 10px; background: #f3f4f6; color: #6b7280; border: none; border-radius: 10px; cursor: pointer;">Close</button>
-                </div>
-            `;
-            
-            document.body.appendChild(modal);
-        }
 
         // Close mobile menu when clicking on a link
         document.querySelectorAll('.nav-link').forEach(link => {
