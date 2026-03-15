@@ -1692,6 +1692,347 @@
         </div>
     </section>
 
+    <!-- ============================================================
+     STUDENT SPOTLIGHTS SECTION
+     Drop this block AFTER the existing Testimonials </section>
+     and BEFORE the YouTube section in your index.html
+     ============================================================ -->
+
+<!-- Paste this inside your existing <style> tag -->
+<style>
+  /* ── Student Spotlights ── */
+  .spotlights {
+    background: linear-gradient(160deg, #fff5f9 0%, #f5f3ff 100%);
+    padding: 5rem 0 6rem;
+  }
+
+  .spotlights .section-header {
+    margin-bottom: 3.5rem;
+  }
+
+  .spotlights-scroll-container {
+    position: relative;
+  }
+
+  .spotlights-wrapper {
+    display: flex;
+    gap: 2rem;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 2rem 1rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: #ec4899 #f9fafb;
+  }
+
+  .spotlights-wrapper::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  .spotlights-wrapper::-webkit-scrollbar-track {
+    background: #f9fafb;
+    border-radius: 10px;
+  }
+
+  .spotlights-wrapper::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #ec4899, #8b5cf6);
+    border-radius: 10px;
+  }
+
+  .spotlights-scroll-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .spotlights-scroll-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ec4899, #8b5cf6);
+    color: white;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+  }
+
+  .spotlights-scroll-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.15);
+  }
+
+  .spotlight-card {
+    background: #ffffff;
+    border-radius: 24px;
+    box-shadow: 0 4px 24px rgba(236, 72, 153, 0.10);
+    padding: 2.25rem 2rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    min-width: 280px;
+    max-width: 280px;
+    flex-shrink: 0;
+  }
+
+  .spotlight-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 5px;
+    border-radius: 24px 24px 0 0;
+    background: linear-gradient(90deg, #ec4899, #8b5cf6);
+  }
+
+  .spotlight-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 16px 48px rgba(236, 72, 153, 0.18);
+  }
+
+  .spotlight-photo-wrap {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ec4899, #8b5cf6);
+    padding: 3px;
+    margin-bottom: 1.25rem;
+    flex-shrink: 0;
+  }
+
+  .spotlight-photo-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #ffffff;
+    display: block;
+  }
+
+  .spotlight-photo-wrap .initials-fallback {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(236,72,153,0.15), rgba(139,92,246,0.15));
+    border: 3px solid #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #ec4899;
+  }
+
+  .spotlight-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 0.35rem;
+  }
+
+  .spotlight-course-badge {
+    display: inline-block;
+    padding: 0.3rem 0.85rem;
+    background: linear-gradient(135deg, rgba(236,72,153,0.12), rgba(139,92,246,0.12));
+    color: #ec4899;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 1rem;
+  }
+
+  .spotlight-stars {
+    color: #fbbf24;
+    font-size: 1rem;
+    margin-bottom: 0.85rem;
+    letter-spacing: 2px;
+  }
+
+  .spotlight-quote {
+    font-size: 0.95rem;
+    color: #6b7280;
+    line-height: 1.7;
+    font-style: italic;
+    position: relative;
+    padding: 0 0.25rem;
+  }
+
+  .spotlight-quote::before {
+    content: '\201C';
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    color: rgba(236,72,153,0.15);
+    position: absolute;
+    top: -1rem;
+    left: -0.5rem;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  @media (max-width: 768px) {
+    .spotlight-card {
+      min-width: 260px;
+      max-width: 260px;
+    }
+  }
+</style>
+
+<!-- Paste this <section> block after the Testimonials </section> -->
+<section class="spotlights" id="student-spotlights">
+  <div class="container">
+
+    <div class="section-header">
+      <h2>Student <span class="highlight">Spotlights</span></h2>
+      <p>Real transformations from real students — meet the talent shaping tomorrow's beauty industry.</p>
+    </div>
+
+    <div class="spotlights-scroll-container">
+      <div class="spotlights-wrapper" id="spotlightsWrapper">
+
+        <!-- Card 1 -->
+        <div class="spotlight-card">
+          <div class="spotlight-photo-wrap">
+            <!-- Replace div below with: <img src="photo.jpg" alt="Name"> -->
+            <div class="initials-fallback">A</div>
+          </div>
+          <div class="spotlight-name">Student Name 1</div>
+          <div class="spotlight-course-badge">Nail Art</div>
+          <div class="spotlight-stars">★★★★★</div>
+          <p class="spotlight-quote">Write the student's review here. What did they love about the course?</p>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="spotlight-card">
+          <div class="spotlight-photo-wrap">
+            <div class="initials-fallback">B</div>
+          </div>
+          <div class="spotlight-name">Student Name 2</div>
+          <div class="spotlight-course-badge">Permanent Makeup</div>
+          <div class="spotlight-stars">★★★★★</div>
+          <p class="spotlight-quote">Write the student's review here. What did they love about the course?</p>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="spotlight-card">
+          <div class="spotlight-photo-wrap">
+            <div class="initials-fallback">C</div>
+          </div>
+          <div class="spotlight-name">Student Name 3</div>
+          <div class="spotlight-course-badge">Skincare</div>
+          <div class="spotlight-stars">★★★★★</div>
+          <p class="spotlight-quote">Write the student's review here. What did they love about the course?</p>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="spotlight-card">
+          <div class="spotlight-photo-wrap">
+            <div class="initials-fallback">D</div>
+          </div>
+          <div class="spotlight-name">Student Name 4</div>
+          <div class="spotlight-course-badge">Professional Makeup</div>
+          <div class="spotlight-stars">★★★★★</div>
+          <p class="spotlight-quote">Write the student's review here. What did they love about the course?</p>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="spotlight-card">
+          <div class="spotlight-photo-wrap">
+            <div class="initials-fallback">E</div>
+          </div>
+          <div class="spotlight-name">Student Name 5</div>
+          <div class="spotlight-course-badge">Microblading</div>
+          <div class="spotlight-stars">★★★★★</div>
+          <p class="spotlight-quote">Write the student's review here. What did they love about the course?</p>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="spotlight-card">
+          <div class="spotlight-photo-wrap">
+            <div class="initials-fallback">F</div>
+          </div>
+          <div class="spotlight-name">Student Name 6</div>
+          <div class="spotlight-course-badge">Lash Lifting</div>
+          <div class="spotlight-stars">★★★★★</div>
+          <p class="spotlight-quote">Write the student's review here. What did they love about the course?</p>
+        </div>
+
+        <!-- Copy any card above to add more -->
+
+      </div><!-- /spotlights-wrapper -->
+
+      <div class="spotlights-scroll-buttons">
+        <button class="spotlights-scroll-btn" onclick="scrollSpotlights('left')">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M15 18l-6-6 6-6"/>
+          </svg>
+        </button>
+        <button class="spotlights-scroll-btn" onclick="scrollSpotlights('right')">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 18l6-6-6-6"/>
+          </svg>
+        </button>
+      </div>
+
+    </div><!-- /spotlights-scroll-container -->
+  </div>
+</section>
+
+<!-- Paste this <script> just before </body> -->
+<script>
+  function scrollSpotlights(direction) {
+    const wrapper = document.getElementById('spotlightsWrapper');
+    if (!wrapper) return;
+    wrapper.scrollBy({ left: direction === 'left' ? -320 : 320, behavior: 'smooth' });
+  }
+
+  (function() {
+    const el = document.getElementById('spotlightsWrapper');
+    if (!el) return;
+    let startX = 0;
+    el.addEventListener('touchstart', e => { startX = e.changedTouches[0].screenX; });
+    el.addEventListener('touchend', e => {
+      const diff = e.changedTouches[0].screenX - startX;
+      if (Math.abs(diff) > 50) scrollSpotlights(diff < 0 ? 'right' : 'left');
+    });
+  })();
+</script>
+
+<!--
+  HOW TO USE
+  ──────────
+  1. STYLE  → paste <style> contents inside your existing <style> tag
+  2. HTML   → paste <section> block after the Testimonials </section>
+  3. SCRIPT → paste <script> block just before </body>
+
+  NAV LINK (optional):
+    <li><a href="#student-spotlights" class="nav-link">Students</a></li>
+
+  PER CARD, fill in:
+    • .spotlight-name         → student's real name
+    • .initials-fallback text → first letter of their name
+    • .spotlight-course-badge → course they took
+    • .spotlight-quote        → their review text
+
+  TO ADD A PHOTO, replace:
+      <div class="initials-fallback">A</div>
+  with:
+      <img src="photo.jpg" alt="Student Name">
+
+  COURSE BADGE OPTIONS:
+    Nail Art | Advanced Nails | Permanent Makeup | Professional Makeup
+    Skincare | Skin Cosmetology | Microblading | Lash Lifting | Hair Styling
+-->
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
